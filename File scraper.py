@@ -11,9 +11,9 @@ config = {
     'type_blacklist': [".mp4", ".mov", ".gif"],
     'save_dir': 'directory/subdirectory',
     'search_dir': [
-        r"C:\\Users\\shira\\Pictures\\Screenshots",
-        r"C:\\FakeDirectory",
-        r"C:\\Users\\shira\Documents\\GitHub\\smcclennon.github.io\\assets\js"
+        "C:\\Users\\shira\\Pictures\\Screenshots",
+        "C:\\FakeDirectory",
+        "C:\\Users\\shira\Documents\\GitHub\\smcclennon.github.io\\assets\js"
     ]
 }
 try:
