@@ -44,11 +44,10 @@ taskTimer = time.time()
 
 def activePrint():
     global taskTimer
-    if time.time() - taskTimer > 2:
-        taskTimer = time.time()
-        return "."
-    else:
+    if time.time() - taskTimer <= 2:
         return ""
+    taskTimer = time.time()
+    return "."
 
 
 def filesavename(file):
@@ -63,7 +62,7 @@ except Exception as e:
     print(e)
     input('Press enter to continue')
 
-print(f'[ SCAN ] Checking pre-existing files in the save directory... ', end="")
+print('[ SCAN ] Checking pre-existing files in the save directory... ', end="")
 for file in glob.iglob(config["save_dir"]+"/**", recursive=True):
     if os.path.isfile(file):
         filelist.append(filesavename(file.replace(config["save_dir"], 'X:', 1)))  # keep track of files which have already been copied
@@ -82,11 +81,10 @@ for directory in config["search_dir"]:
                     skipped_files += 1
                 else:
                     if filesavename(file) not in filelist:  # if not duplicate (already copied)
-                        print(activePrint(), flush=True, end="")
                         new_files += 1
                     else:
-                        print(activePrint(), flush=True, end="")
                         old_files += 1
+                    print(activePrint(), flush=True, end="")
                     new_dir = os.path.dirname(config["save_dir"]+filesavename(file)).replace("/","\\")
                     if not os.path.exists(new_dir):
                         os.makedirs(new_dir)  # create save_dir
